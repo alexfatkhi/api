@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
-            $table->uuid('id')->primary()->default(DB::raw('(UUID())'));
-            $table->uuid('progdi_id');
+            $table->id();
+            $table->unsignedBigInteger('progdi_id');
             $table->string('nim', 54);
             $table->string('nama', 54);
             $table->text('alamat');
@@ -21,6 +21,10 @@ return new class extends Migration
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'))->onUpdate(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('deleted_at')->nullable();
+
+            $table->foreign('progdi_id')->references('id')->on('progdi')
+                  ->onDelete('no action')
+                  ->onUpdate('no action');
         });
     }
 

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Progdi;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Mahasiswa>
@@ -17,7 +18,7 @@ class MahasiswaFactory extends Factory
     public function definition(): array
     {
         return [
-            'progdi_id' => \App\Models\Progdi::inRandomOrder()->first()->id,
+            'progdi_id' => Progdi::inRandomOrder()->first()->id,
             'nim'       => '2024' . $this->faker->unique()->numerify('###'),
             'nama'      => $this->faker->name,
             'alamat'    => $this->faker->address,
