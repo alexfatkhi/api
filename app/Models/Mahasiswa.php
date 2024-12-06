@@ -12,4 +12,12 @@ class Mahasiswa extends Model
 
     protected $table = 'mahasiswa';
     protected $guarded = ['id'];
+
+    /**
+     * Relasi ke model Progdi.
+     */
+    public function progdi()
+    {
+        return $this->belongsTo(Progdi::class);
+    }
 }
