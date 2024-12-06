@@ -1,6 +1,6 @@
 {
     "info": {
-      "name": "Mahasiswa API",
+      "name": "Mahasiswa API with Login Token",
       "_postman_id": "12345-abcde-67890-fghij",
       "description": "API Collection for Mahasiswa CRUD with Sanctum Authentication",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -50,7 +50,21 @@
             "path": ["api", "login"]
           }
         },
-        "response": []
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "exec": [
+                "// Simpan token dari response ke Global Variable",
+                "pm.globals.set(\"auth_token\", pm.response.json().data.token);",
+                "// Debugging: tampilkan token di console",
+                "console.log(\"Auth Token:\", pm.response.json().data.token);"
+              ],
+              "type": "text/javascript"
+            }
+          }
+        ]
       },
       {
         "name": "Get Mahasiswa",
